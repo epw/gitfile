@@ -1,4 +1,3 @@
-epw's Advent of Code Repository
+# Gitfile
 
-This is a repository containing solutions for the 2020 Advent of Code
-(https://adventofcode.com/).
+This is not an officially supported Google product.
