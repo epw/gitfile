@@ -1,0 +1,26 @@
+#! /bin/bash
+
+CONF=$HOME/.config/gitfile.conf
+source $CONF
+
+file="$1"
+basename="`basename $1`"
+if [[ "${file:0:1}" == '/' ]]; then
+    fullname="$file"
+else
+    fullname="`pwd`/$file"
+fi
+cd "$GITFILE_DIR"
+reponame="$basename"
+if [[ -d "$reponame" ]]; then
+    reponame="$reponame-`uuidgen`"
+fi
+git init "$reponame"
+cd "$reponame"
+repo="`pwd`"
+mv "$fullname" .
+git add *
+git commit -a -m "gitfile initialized $basename from $fullname"
+
+cd "`dirname $fullname`"
+ln -s "$repo/$basename" "$basename"
